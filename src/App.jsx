@@ -2,6 +2,8 @@ import './App.css'
 
 import Counter from './Counter';
 
+import Batsman from './Batsman';
+
 function App() {
 
   function handleClick() {
@@ -24,6 +26,8 @@ function App() {
       <h1>Get started</h1>
 
       <Counter></Counter>
+
+      <Batsman></Batsman>
 
       <div style={{display: 'flex', gap: '10px', justifyContent: 'center'}}>
         {/* <button onClick={handleClick()}>Click Me</button> */}
