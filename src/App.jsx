@@ -8,26 +8,37 @@ import Users from './Users';
 
 import Friends from './Friends';
 
+import Posts from './posts';
+
 // auto import hoye jay jokhon <Suspense> likha hoy
 import { Suspense } from 'react';
 
 
 // user component er jonno data fetch
-const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users')
-  .then(res => res.json())
+// const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users')
+//   .then(res => res.json())
 
 
 // Friends component er jonno data fetch
-const fetchFriends = async() =>{
-  const res =await fetch('https://jsonplaceholder.typicode.com/users');
-  return res.json(); 
-  // promise return korbe 
+// const fetchFriends = async() =>{
+//   const res =await fetch('https://jsonplaceholder.typicode.com/users');
+//   return res.json(); 
+//   // promise return korbe 
+// }
+
+
+// Post er data fetch 
+const fetchPosts = async()=>{
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts');
+  return res.json();
 }
 
 function App() {
 
+  const postsPromise = fetchPosts();
+
   // fetchFriends er kaj 
-  const friendsPromise = fetchFriends();
+  // const friendsPromise = fetchFriends();
 
   function handleClick() {
     alert('I am clicked');
@@ -48,16 +59,23 @@ function App() {
     <>
       <h1>Get started</h1>
 
+
+    <Suspense fallback={<h4>Posts are Loading...</h4>}>
+      <Posts PostsPromise={postsPromise}></Posts> 
+      {/* prothom ta props */}
+    </Suspense>
+
+
     {/* suspense er pet er moddhe component */}
-      <Suspense fallback={<h3>Loading...</h3>}>
-        <Users fetchData = {fetchUsers}></Users>
+      {/* <Suspense fallback={<h3>Loading...</h3>}>
+        <Users fetchData = {fetchUsers}></Users> */}
         {/* props pathalam */}
-      </Suspense>
+      {/* </Suspense> */}
 
       {/* Friends.jsx er jonno suspense */}
-      <Suspense fallback={<h3>Friends are for short time, so value them</h3>}>
+      {/* <Suspense fallback={<h3>Friends are for short time, so value them</h3>}>
         <Friends FriendsDataLoad = {friendsPromise}></Friends>
-      </Suspense>
+      </Suspense> */}
 
 
       <Counter></Counter>
