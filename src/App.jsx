@@ -4,7 +4,30 @@ import Counter from './Counter';
 
 import Batsman from './Batsman';
 
+import Users from './Users';
+
+import Friends from './Friends';
+
+// auto import hoye jay jokhon <Suspense> likha hoy
+import { Suspense } from 'react';
+
+
+// user component er jonno data fetch
+const fetchUsers = fetch('https://jsonplaceholder.typicode.com/users')
+  .then(res => res.json())
+
+
+// Friends component er jonno data fetch
+const fetchFriends = async() =>{
+  const res =await fetch('https://jsonplaceholder.typicode.com/users');
+  return res.json(); 
+  // promise return korbe 
+}
+
 function App() {
+
+  // fetchFriends er kaj 
+  const friendsPromise = fetchFriends();
 
   function handleClick() {
     alert('I am clicked');
@@ -24,6 +47,18 @@ function App() {
   return (
     <>
       <h1>Get started</h1>
+
+    {/* suspense er pet er moddhe component */}
+      <Suspense fallback={<h3>Loading...</h3>}>
+        <Users fetchData = {fetchUsers}></Users>
+        {/* props pathalam */}
+      </Suspense>
+
+      {/* Friends.jsx er jonno suspense */}
+      <Suspense fallback={<h3>Friends are for short time, so value them</h3>}>
+        <Friends FriendsDataLoad = {friendsPromise}></Friends>
+      </Suspense>
+
 
       <Counter></Counter>
 
