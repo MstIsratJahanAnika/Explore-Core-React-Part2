@@ -10,6 +10,8 @@ import Friends from './Friends';
 
 import Posts from './posts';
 
+import Players from './Players';
+
 // auto import hoye jay jokhon <Suspense> likha hoy
 import { Suspense } from 'react';
 
@@ -58,6 +60,8 @@ function App() {
   return (
     <>
       <h1>Get started</h1>
+
+      <Players></Players>
 
 
     <Suspense fallback={<h4>Posts are Loading...</h4>}>

@@ -39,3 +39,14 @@
  * 
  * 2. wrap data loading component in suspense
  */
+
+
+/**
+ * learning outcomes
+ * 
+ * event trigger
+ * state
+ * data load from API 
+ * loop through display data 
+ * why we use key prop
+ */

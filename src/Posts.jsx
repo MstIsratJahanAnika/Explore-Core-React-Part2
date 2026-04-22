@@ -1,12 +1,13 @@
 import { use } from "react";
-// import Post from "./Post";
+
+import Post from "./Post";
 
 export default function Posts({PostsPromise}) {
 
     console.log(PostsPromise);
 
   const posts = use(PostsPromise);
-  console.log(posts);
+  // console.log(posts);
 
   return (
     <div className="card">
